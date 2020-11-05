@@ -190,9 +190,7 @@
             _displayLink = nil;
         }
         [super setProgress:progress animated:animated];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self setNeedsDisplay];
-        });
+        [self setNeedsDisplay];
     } else {
         _animationStartTime = CACurrentMediaTime();
         _animationFromValue = self.progress;

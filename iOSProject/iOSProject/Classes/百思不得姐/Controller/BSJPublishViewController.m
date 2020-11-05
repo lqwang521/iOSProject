@@ -24,9 +24,6 @@
 @implementation BSJPublishViewController
 
 
-
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -54,24 +51,12 @@
         
     } completion:^(BOOL finished) {
         
-        
-        
         [self.publishButtons enumerateObjectsUsingBlock:^(UIButton * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            
-            
             [UIView animateWithDuration:0.5 delay:0.2 * idx usingSpringWithDamping:0.4 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-                
                 obj.transform = CGAffineTransformIdentity;
-                
             } completion:nil];
-            
-            
         }];
-        
-        
     }];
-    
-    
 }
 
 - (UIImageView *)sloganImageView
@@ -182,7 +167,8 @@
         
         [btn mas_makeConstraints:^(MASConstraintMaker *make) {
             
-            make.right.top.offset(0);
+            make.right.offset(0);
+            make.top.offset([UIApplication sharedApplication].statusBarFrame.size.height);
             make.size.mas_equalTo(CGSizeMake(100, 44));
             
         }];
@@ -195,7 +181,8 @@
 
 - (void)closePage
 {
-    [self dismissPopUpViewController:DDPopUpAnimationTypeNone];
+//    [self dismissPopUpViewController:DDPopUpAnimationTypeNone];
+    [self dismissViewControllerAnimated:YES completion:nil];
     
 }
 /*

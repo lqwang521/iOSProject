@@ -22,6 +22,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.fd_interactivePopDisabled = YES;
+    
     WPFBaseView *baseView = nil;
     
     // 根据不同的功能类型选择不同的视图
@@ -52,13 +54,10 @@
     }
     
     
-    
     [self.view addSubview:baseView];
     
-    
     [baseView mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.edges.insets(UIEdgeInsetsMake(self.lmj_navgationBar.lmj_height, 0, 0, 0));
+        make.edges.insets(UIEdgeInsetsMake(self.lmj_navgationBar.lmj_height + 10, 10, 10, 10));
     }];
     
 }
