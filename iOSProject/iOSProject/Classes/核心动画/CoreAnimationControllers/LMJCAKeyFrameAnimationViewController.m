@@ -81,7 +81,7 @@
     }
     
     anim.duration = 3;
-    anim.repeatCount = MAXFLOAT;
+    anim.repeatCount = 1;
     [[(LMJCAKeyFrameAnimationViewController *)self.viewController blueLayer] addAnimation:anim forKey:nil];
 }
 

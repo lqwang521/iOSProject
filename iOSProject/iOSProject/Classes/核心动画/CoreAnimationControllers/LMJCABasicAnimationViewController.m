@@ -30,17 +30,17 @@
     anim.delegate = weakself;
     
     // 描述下修改哪个属性产生动画
-    // anim.keyPath = @"position";
+     anim.keyPath = @"position";
     // 只能是layer属性
-    anim.keyPath = @"transform.scale";
+    //anim.keyPath = @"transform.scale";
 
     // 设置值
-    //anim.toValue = [NSValue valueWithCGPoint:CGPointMake(250, 500)];
+    anim.toValue = [NSValue valueWithCGPoint:CGPointMake(250, 500)];
     
-    anim.toValue = @0.5;
+    //anim.toValue = @0.5;
     
     // 设置动画执行次数
-    anim.repeatCount = 10;
+    anim.repeatCount = 1;
     
     // 取消动画反弹
     // 设置动画完成的时候不要移除动画
