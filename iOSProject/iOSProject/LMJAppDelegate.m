@@ -14,6 +14,13 @@
 #import "LMJUMengHelper.h"
 #import <UserNotificationsUI/UserNotificationsUI.h>
 
+#if DEBUG
+#define QYK_FLEX_ENABLE 1
+#if QYK_FLEX_ENABLE
+#import <FLEX/FLEX.h>
+#endif
+#endif
+
 @implementation LMJAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -64,6 +71,18 @@
     } else {
         NSLog(@"Not Found Injection Bundle");
     }
+#endif
+    
+#if DEBUG
+#if QYK_FLEX_ENABLE
+    BOOL enable = YES;
+    if (enable) {
+        [[FLEXManager sharedManager] showExplorer];
+    }
+    else {
+        [[FLEXManager sharedManager] hideExplorer];
+    }
+#endif
 #endif
     return YES;
 }
