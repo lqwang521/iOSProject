@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1263946F2559603700CBB5B1 /* QYKGraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1263946E2559603700CBB5B1 /* QYKGraphViewController.m */; };
 		126394762559613000CBB5B1 /* QYKGraphSphereView.m in Sources */ = {isa = PBXBuildFile; fileRef = 126394752559612F00CBB5B1 /* QYKGraphSphereView.m */; };
+		12744C0E255A3BBF00485B8B /* QYKGraphTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 12744C0D255A3BBF00485B8B /* QYKGraphTopView.m */; };
 		54E3991EBFDEC31145ED8B0F /* libPods-iOSProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 195AF1DB9976AB51691A659C /* libPods-iOSProject.a */; };
 		581A3E2C2044434400AF08C0 /* LMJOfflineDownloadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 581A3E2B2044434400AF08C0 /* LMJOfflineDownloadViewController.m */; };
 		581A3E3F20450B3E00AF08C0 /* MJDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 581A3E3920450B3D00AF08C0 /* MJDownloadManager.m */; };
@@ -344,6 +345,8 @@
 		126394732559612F00CBB5B1 /* QYKGraphSphereView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QYKGraphSphereView.h; sourceTree = "<group>"; };
 		126394742559612F00CBB5B1 /* QYKGraphPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QYKGraphPoint.h; sourceTree = "<group>"; };
 		126394752559612F00CBB5B1 /* QYKGraphSphereView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QYKGraphSphereView.m; sourceTree = "<group>"; };
+		12744C0C255A3BBF00485B8B /* QYKGraphTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYKGraphTopView.h; sourceTree = "<group>"; };
+		12744C0D255A3BBF00485B8B /* QYKGraphTopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QYKGraphTopView.m; sourceTree = "<group>"; };
 		195AF1DB9976AB51691A659C /* libPods-iOSProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iOSProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		581A3E2A2044434400AF08C0 /* LMJOfflineDownloadViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LMJOfflineDownloadViewController.h; sourceTree = "<group>"; };
 		581A3E2B2044434400AF08C0 /* LMJOfflineDownloadViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LMJOfflineDownloadViewController.m; sourceTree = "<group>"; };
@@ -969,6 +972,8 @@
 				126394742559612F00CBB5B1 /* QYKGraphPoint.h */,
 				126394732559612F00CBB5B1 /* QYKGraphSphereView.h */,
 				126394752559612F00CBB5B1 /* QYKGraphSphereView.m */,
+				12744C0C255A3BBF00485B8B /* QYKGraphTopView.h */,
+				12744C0D255A3BBF00485B8B /* QYKGraphTopView.m */,
 			);
 			path = QYKGraphSphereView;
 			sourceTree = "<group>";
@@ -2650,6 +2655,7 @@
 				58DC83CD1FFB43E30060DC03 /* LMJShangXiaWenZhanViewController.m in Sources */,
 				58A858A6207C934E0063DE98 /* PresentAnimator.m in Sources */,
 				58DC84F91FFC972C0060DC03 /* BSJMeViewController.m in Sources */,
+				12744C0E255A3BBF00485B8B /* QYKGraphTopView.m in Sources */,
 				58DC81721FFA29E00060DC03 /* LMJDragTableViewController.m in Sources */,
 				589888A3206B34BF00BDAACD /* RSAEncryptor.m in Sources */,
 				584038481FF7F3E5002A0566 /* LMJRequestManager.m in Sources */,

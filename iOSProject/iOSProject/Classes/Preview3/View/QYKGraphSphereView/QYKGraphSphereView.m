@@ -8,6 +8,7 @@
 
 #import "QYKGraphSphereView.h"
 #import "QYKGraphMatrix.h"
+#define PI 3.14159265358979323846
 
 @interface QYKGraphSphereView() <UIGestureRecognizerDelegate>
 
@@ -32,6 +33,9 @@
     if (self) {
         UIPanGestureRecognizer *gesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
         [self addGestureRecognizer:gesture];
+        self.backgroundColor = [UIColor clearColor];
+        // 设置默认中心点
+        _centerPoint = CGPointMake(frame.size.width / 2, frame.size.height / 2);
     }
     return self;
 }
@@ -43,6 +47,7 @@
     tags = [NSMutableArray arrayWithArray:array];
     coordinate = [[NSMutableArray alloc] initWithCapacity:0];
     
+    // 重置view的中心点,便于计算
     for (NSInteger i = 0; i < tags.count; i ++) {
         UIView *view = [tags objectAtIndex:i];
         view.center = CGPointMake(self.frame.size.width / 2., self.frame.size.height / 2.);
@@ -50,6 +55,7 @@
     
     CGFloat p1 = M_PI * (3 - sqrt(5));
     CGFloat p2 = 2. / tags.count;
+    //NSLog(@"p1:%f p2:%f", p1, p2);
     
     for (NSInteger i = 0; i < tags.count; i ++) {
         
@@ -63,6 +69,7 @@
         QYKGraphPoint point = QYKGraphPointMake(x, y, z);
         NSValue *value = [NSValue value:&point withObjCType:@encode(QYKGraphPoint)];
         [coordinate addObject:value];
+        //NSLog(@"x:%f y:%f z:%f", point.x, point.y, point.z);
         
         CGFloat time = (arc4random() % 10 + 10.) / 20.;
         [UIView animateWithDuration:time delay:0. options:UIViewAnimationOptionCurveEaseOut animations:^{
@@ -106,6 +113,8 @@
     view.transform = CGAffineTransformScale(CGAffineTransformIdentity, transform, transform);
     view.layer.zPosition = transform;
     view.alpha = transform;
+    //NSLog(@"transform:%f", transform);
+    
     if (point.z < 0) {
         view.userInteractionEnabled = NO;
     }else {
@@ -201,8 +210,7 @@
 
 #pragma mark 使用默认context进行绘图
 
-- (void)updateFrameOfPointwlq:(NSInteger)index direction:(QYKGraphPoint)direction andAngle:(CGFloat)angle
-{
+- (void)drawLineWithIndex:(NSInteger)index {
     NSValue *value = [coordinate objectAtIndex:index];
     QYKGraphPoint point;
     if (@available(iOS 11.0, *)) {
@@ -216,13 +224,12 @@
 
     view.center = center;
     [self drawLineToPoint:center];
-   
 }
 
+/// 绘制所有的线
 - (void)drawALLLine {
-    //TODOwlq
     for (NSInteger i = 0; i < tags.count; i ++) {
-        [self updateFrameOfPointwlq:i direction:normalDirection andAngle:0.002];
+        [self drawLineWithIndex:i];
     }
 }
 
@@ -232,8 +239,7 @@
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     //设置当前上下问路径
     //设置起始点
-    //CGContextMoveToPoint(context, self.center.x, self.center.y);
-    CGContextMoveToPoint(ctx, 160, 160);
+    CGContextMoveToPoint(ctx, self.centerPoint.x, self.centerPoint.y);
     //增加点
     CGContextAddLineToPoint(ctx, point.x, point.y);
     //关闭路径
@@ -242,11 +248,6 @@
     // 线宽
     CGContextSetLineWidth(ctx, 0.5);
     //设置属性
-    /*
-     UIKit会默认导入 core Graphics框架，UIKit对常用的很多的方法做了封装
-     UIColor setStroke设置边线颜色
-     uicolor setFill 设置填充颜色
-     */
     [[UIColor lightGrayColor] setStroke];
     [[UIColor lightGrayColor] setFill];
     //4.绘制路径
@@ -256,10 +257,22 @@
 - (void)drawRect:(CGRect)rect {
     //1.获取上下文
     CGContextRef ctx = UIGraphicsGetCurrentContext();
-    [[UIColor colorWithWhite:0.0 alpha:0.0] setFill];
+    [[UIColor clearColor] setFill];
     CGContextFillRect(ctx, rect);
     
     [self drawALLLine];
+    
+    UIColor*aColor = [UIColor colorWithRed:255/255.0 green:230/255.0 blue:218/255.0 alpha:1/1.0];
+    CGContextSetFillColorWithColor(ctx, aColor.CGColor);
+    //CGContextSetLineWidth(ctx, 0.0);
+    CGContextAddArc(ctx, self.centerPoint.x, self.centerPoint.y, 7.5, 0, 2*PI, 0);
+    CGContextDrawPath(ctx, kCGPathFill);
+    
+    UIColor*bColor = [UIColor colorWithRed:255/255.0 green:139/255.0 blue:84/255.0 alpha:1/1.0];
+    CGContextSetFillColorWithColor(ctx, bColor.CGColor);
+    CGContextAddArc(ctx, self.centerPoint.x, self.centerPoint.y, 4, 0, 2*PI, 0);
+    CGContextDrawPath(ctx, kCGPathFill);
+    
     // 标签前置
     for (UIView *object in tags) {
         [self bringSubviewToFront:object];

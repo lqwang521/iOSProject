@@ -10,6 +10,9 @@
 
 @interface QYKGraphSphereView : UIView
 
+/// 中心点
+@property (nonatomic,assign) CGPoint centerPoint;
+
 /**
  *  Sets the cloud's tag views.
  *
